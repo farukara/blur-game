@@ -1,8 +1,45 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import React, {useState, useEffect, useRef} from 'react'
 
 export default function Home() {
+    const [binoPos, setbinoPos] = useState({})
+    const [binoSize, setBinoSize] = useState(10)
+    const [clarity, setClarity] = useState(30)
+    const blurRef = useRef()
+
+    const mousemove = (e) => {
+        setbinoPos({x: e.clientX/e.target.offsetHeight, y:e.clientY/e.target.offsetWidth})
+     };
+    useEffect (() => {
+        blurRef.current.style.transform = `translate(${binoPos.x*10}%, ${binoPos.y*10}%)`
+    }, [binoPos])
+
+    useEffect(() => {
+        const interval = setInterval (() => {
+            if (clarity > 5) {
+                setClarity( p => p-0.1) 
+                setBinoSize ( p => p +0.1)
+            } else {
+                clearInterval(interval)
+            }
+        }, 1000)
+        return () => clearInterval(interval)
+    }, []);
+
+    useEffect (() => {
+        blurRef.current.style.backdropFilter = `blur(${Math.floor(clarity)}px)`
+        blurRef.current.style.webkitBackdropFilter = `blur(${Math.floor(clarity)}px)`
+        console.log("clarity:", clarity)
+    }, [clarity])
+
+    useEffect (() => {
+        blurRef.current.style.maskImage = `radial-gradient(${Math.floor(binoSize)}px at 50% 50%, transparent 50%, black 50%)`
+        blurRef.current.style.webkitMaskImage = `radial-gradient(${Math.floor.binoSize}px at 50% 50%, transparent 50%, black 50%)`
+        console.log("binoSize:", binoSize)
+    }, [binoSize])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -16,54 +53,12 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+        <Image className={styles.canvas}  src="/1.jpg" alt="1st image" layout="fill"/>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className={styles.blur} ref={blurRef} onMouseMove={mousemove}>
         </div>
-      </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      </main>
     </div>
   )
 }
