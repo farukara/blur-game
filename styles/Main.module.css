@@ -1,0 +1,24 @@
+.container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.canvas {
+    height: 100%;
+    width: 100%;
+    background-image: url("../public/1.jpg");
+    background-size: cover;
+}
+
+.blur {
+    position: absolute;
+    top: -100vh;
+    left: -100vw;
+    height:200vh;
+    width: 200vw;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    mask-image: radial-gradient(200px at 50% 50%, transparent 50%, black 50%);
+}
