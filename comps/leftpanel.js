@@ -1,21 +1,24 @@
 import styles from "../styles/LeftPanel.module.css"
 import { Box, Typography, Button } from "@mui/material"
+import ImageSearchIcon from '@mui/icons-material/ImageSearch';
+import LensBlurIcon from '@mui/icons-material/LensBlur';
+import Divider from '@mui/material/Divider';
+
 
 export default function LeftPanel ({binoPos, binoSize, clarity, setBinoPos, setBinoSize, setClarity}) {
     return (
-    <Box>
-        <Typography >binoX:{binoPos.x}</Typography><br/>
-        <Typography >binoY:{binoPos.y}</Typography><br/>
-        <Typography >binoSize:{binoSize}</Typography><br/>
-        <Typography >clarity:{clarity}</Typography><br/>
-        <Button 
-            className={styles.button}
-            variant="contained"
-            onClick={() => setClarity(clarity-5)}>Reduce clarity by 5</Button>
-        <Button 
-            className={styles.button}
-            variant="contained"
-            onClick={() => setBinoSize(binoSize+200)}>Inc size by 100</Button>
+    <Box className={styles.main}>
+        <Box className={[styles.monocle, styles.stat].join(" ")}>
+            <Typography className={styles.def}>Monocle Size</Typography>
+            <ImageSearchIcon className={styles.icon}/>
+            <Typography className={styles.value}>{binoSize}</Typography>
+        </Box>
+        <Divider variant="middle" light={true} color="teal"/>
+        <Box className={[styles.clarity, styles.stat].join(" ")}>
+            <Typography className={styles.def}>Clarity</Typography>
+            <LensBlurIcon className={styles.icon}/>
+            <Typography className={styles.value}>{clarity}</Typography>
+        </Box>
     </Box>
 
     )

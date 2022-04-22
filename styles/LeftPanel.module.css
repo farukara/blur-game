@@ -1,3 +1,31 @@
-.button {
-    margin:0.3rem;
+.main {
+    height: 100%;
+    background-color: #333;
+    color: #ccc;
+
+}
+.stat {
+    height: 5rem;
+    display: grid;
+    grid-template-areas:
+         "t t"
+         "b c";
+    place-items: center;
+ }   
+.monocle {
+}
+.clarity {
+}
+.def {
+    grid-area: t;
+    font-size: 1rem;
+    text-align: center;
+    color: dodgerblue;
+}
+.icon {
+    grid-area: b;
+    font-size: 2rem;
+}
+.value {
+    grid-area: c;
 }
