@@ -7,6 +7,8 @@ export default function Home() {
     const [binoPos,setBinoPos] = useState({x:"50%", y:"50%"})
     const [binoSize, setBinoSize] = useState(10)
     const [clarity, setClarity] = useState(30)
+    const [leftPanelW, setLeftPanelW] = useState(180)
+    const [topPanelH, setTopPanelH] = useState(30)
   return (
     <div>
       <Head>
@@ -14,8 +16,8 @@ export default function Home() {
         <meta name="description" content="It's a game of blury images" />
       </Head>
 
-    <Layout binoPos={binoPos} binoSize={binoSize} clarity={clarity} setBinoPos={setBinoPos} setBinoSize={setBinoSize}  setClarity={setClarity} >
-        <Main binoPos={binoPos} binoSize={binoSize} clarity={clarity} setBinoPos={setBinoPos} setBinoSize={setBinoSize}  setClarity={setClarity} />
+    <Layout binoPos={binoPos} binoSize={binoSize} clarity={clarity} setBinoPos={setBinoPos} setBinoSize={setBinoSize}  setClarity={setClarity} setLeftPanelW={setLeftPanelW} setTopPanelH={setTopPanelH}>
+        <Main binoPos={binoPos} binoSize={binoSize} clarity={clarity} setBinoPos={setBinoPos} setBinoSize={setBinoSize}  setClarity={setClarity} leftPanelW={leftPanelW} topPanelH={topPanelH}/>
     </Layout>
     </div>
   )

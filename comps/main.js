@@ -2,30 +2,25 @@ import Image from 'next/image'
 import styles from '../styles/Main.module.css'
 import React, {useState, useEffect, useRef} from 'react'
 
-export default function Main({binoPos, binoSize, clarity, setBinoPos, setBinoSize, setClarity}) {
+export default function Main({binoPos, binoSize, clarity, setBinoPos, setBinoSize, setClarity, leftPanelW, topPanelH}) {
     const blurRef = useRef()
-    let mainPos = {top:0, bottom:0, left:0, right:0}
-    /* let topPanelPos = {top:0, bottom:0, left:0, right:0}
-    let leftPanelPos = {top:0, bottom:0, left:0, right:0} */
-    /* topPanelPos = blurRef.current.getBoundingClientRect()
-    leftPanelPos = blurRef.current.getBoundingClientRect() */
-    if (blurRef.current) {
-        mainPos = blurRef.current.getBoundingClientRect()
-    }
-    console.log(mainPos.top, mainPos.right, mainPos.bottom, mainPos.left);
 
+    //adjust blur
     useEffect(() => {
         blurRef.current.style.backdropFilter = `blur(${clarity}px)`
         blurRef.current.style.webkitBackdropFilter = `blur(${clarity}px)`
     },[clarity])
+
+    //adjust binoSize
     useEffect(() => {
-        console.log(blurRef.current.style)
-        blurRef.current.style.maskImage = `${binoSize}px at 50% 50%, transparent 50%, black 50%)`
-        blurRef.current.style.webkitMaskImage = `${binoSize}px at 50% 50%, transparent 50%, black 50%)`
+        blurRef.current.style.maskImage = `radial-gradient(${binoSize}px at 50% 50%, transparent 50%, black 50%)`
+        blurRef.current.style.webkitMaskImage = `radial-gradient(${binoSize}px at 50% 50%, transparent 50%, black 50%)`
     },[binoSize])
+
+    //adjust binoPos
     useEffect(() => {
-        blurRef.current.style.transform = `translate(${binoPos.x-200}px, ${binoPos.y}px)`
-    },[binoPos.x, binoPos.y])
+        blurRef.current.style.transform = `translate(${binoPos.x - leftPanelW - binoSize}px, ${binoPos.y - topPanelH - binoSize}px)`
+    },[binoPos.x, binoPos.y, leftPanelW, topPanelH, binoSize])
 
     return (
     <div className={styles.container}>
