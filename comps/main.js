@@ -7,8 +7,8 @@ export default function Main({binoPos, binoSize, clarity, setBinoPos, setBinoSiz
 
     //adjust blur
     useEffect(() => {
-        blurRef.current.style.backdropFilter = `blur(${clarity}px)`
-        blurRef.current.style.webkitBackdropFilter = `blur(${clarity}px)`
+        blurRef.current.style.backdropFilter = `blur(${clarity/10}px)`
+        blurRef.current.style.webkitBackdropFilter = `blur(${clarity/10}px)`
     },[clarity])
 
     //adjust binoSize
@@ -21,6 +21,18 @@ export default function Main({binoPos, binoSize, clarity, setBinoPos, setBinoSiz
     useEffect(() => {
         blurRef.current.style.transform = `translate(${binoPos.x - leftPanelW - binoSize}px, ${binoPos.y - topPanelH - binoSize}px)`
     },[binoPos.x, binoPos.y, leftPanelW, topPanelH, binoSize])
+
+    //timer for blur and clarity
+    useEffect(() => {
+        const timer = setInterval(()=> {
+            console.log("inside")
+            setBinoSize(p => p+1)
+            setClarity(p => p-1)
+        },3000)
+        return () => {
+            clearInterval(timer)
+        }
+    }, [setBinoSize, setClarity])
 
     return (
     <div className={styles.container}>

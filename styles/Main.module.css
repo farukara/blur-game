@@ -14,10 +14,10 @@
 
 .blur {
     position: absolute;
-    top: -100vh;
-    left: -100vw;
-    height:200vh;
-    width: 200vw;
+    top: -150vh;
+    left: -150vw;
+    height:300vh;
+    width: 300vw;
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     mask-image: radial-gradient(200px at 50% 50%, transparent 50%, black 50%);

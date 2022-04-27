@@ -6,7 +6,7 @@ import React, {useState} from 'react'
 export default function Home() {
     const [binoPos,setBinoPos] = useState({x:"50%", y:"50%"})
     const [binoSize, setBinoSize] = useState(10)
-    const [clarity, setClarity] = useState(30)
+    const [clarity, setClarity] = useState(300)
     const [leftPanelW, setLeftPanelW] = useState(180)
     const [topPanelH, setTopPanelH] = useState(30)
   return (
