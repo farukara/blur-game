@@ -25,7 +25,6 @@ export default function Main({binoPos, binoSize, clarity, setBinoPos, setBinoSiz
     //timer for blur and clarity
     useEffect(() => {
         const timer = setInterval(()=> {
-            console.log("inside")
             setBinoSize(p => p+1)
             setClarity(p => p-1)
         },3000)

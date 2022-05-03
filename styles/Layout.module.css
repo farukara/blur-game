@@ -3,7 +3,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 6fr;
-    grid-template-rows: 5% auto;
+    grid-template-rows: 33px auto;
     grid-template-areas: 
         "t t"
         "l m";

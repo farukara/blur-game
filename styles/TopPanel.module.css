@@ -1,0 +1,11 @@
+.main {
+    color: #eee;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item {
+    margin: 3px 20px;
+}
