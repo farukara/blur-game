@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../comps/Layout.js'
-import Main from '../comps/Main.js'
+import Main from '../comps/main.js'
 import React, {useState} from 'react'
 
 export default function Home() {
